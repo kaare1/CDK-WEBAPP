@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+    <h1>Modals and Dialogs</h1>
+    <h2>This is where things start to happen!</h2>
+    <title>Dialogs and Modals</title>
+
+    <style>
+        .modal {
+            position: fixed;
+            padding: 0.5rem;
+            top: 25%;
+            left: 10%;
+            background: white;
+            border-radius: 0.25rem;
+            z-index: 10;
+        }
+
+        dialog::backdrop{
+            background-color: hsl(200, 100%, 50%, 0.5);
+        }
+    </style>
+
+</head>
+<body>
+    <button data-open-modal>Open a Modal</button>
+
+    <button data-open-dialog>Open a Dialog</button>
+
+    <button data-open-login>Log in</button>
+
+    <dialog data-modal class="modal">
+        <div>This is a modal</div>
+        <button data-close-modal>Close</button>
+    </dialog>
+
+    <dialog data-dialog>
+        <div>This is a dialog</div>
+        <button data-close-dialog>Close</button>
+    </dialog>
+
+    <dialog data-login>
+        <form>
+            <div>
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <button data-submit-login type="submit">Login</button>
+                <button data-close-login type="submit" formmethod="dialog">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+
+
+    <script>
+
+        const openModalButton = document.querySelector("[data-open-modal]")
+        const closeModalButton = document.querySelector("[data-close-modal]")
+        const modal = document.querySelector("[data-modal]")
+
+        const openDialogButton = document.querySelector("[data-open-dialog]")
+        const closeDialogButton = document.querySelector("[data-close-dialog]")
+        const dialog = document.querySelector("[data-dialog]")
+
+        const openLoginDialog = document.querySelector("[data-open-login]")
+        const closeLoginDialog = document.querySelector("[data-close-login]")
+        const submitLoginbutton = document.querySelector("[data-submit-login]")
+        const logindialog = document.querySelector("[data-login]")
+
+
+
+        openModalButton.addEventListener("click", () => {
+            modal.showModal()
+        })
+
+        closeModalButton.addEventListener("click", () => {
+            modal.close()
+        })
+
+        openDialogButton.addEventListener("click", () => {
+            dialog.show()
+        })
+
+        closeDialogButton.addEventListener("click", () => {
+            dialog.close()
+        })
+
+        openLoginDialog.addEventListener("click", () => {
+            logindialog.showModal()
+        })
+
+        closeLoginDialog.addEventListener("click", () => {
+            logindialog.close()
+        })
+
+        submitLoginbutton.addEventListener("click", () => {
+            console.log('Login form submited!')
+        })
+    </script>
+
+</body>
+</html>
+
+<script src="./Cognito/amazon-cognito-identity.min.js"></script>
